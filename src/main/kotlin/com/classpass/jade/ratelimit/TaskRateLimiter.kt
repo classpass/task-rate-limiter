@@ -45,7 +45,7 @@ public class TaskRateLimiter(
 
     /**
      * This field is null until work has been submitted, whereupon it is a handle on a task that
-     * the {@link executorService} will execute after {@link delay}.  When that timer task is run,
+     * the {@link executorService} will execute after {@link delay}. When that timer task is run,
      * it clears this future and, if there is work in the queue, schedules a new timer and
      * executes the next bit of work.
      */
@@ -53,7 +53,7 @@ public class TaskRateLimiter(
     private var timerFuture: ScheduledFuture<Unit>? = null
 
     /**
-     * Submit at a task to be executed abiding by the rate limit.  The task will be executed
+     * Submit at a task to be executed abiding by the rate limit. The task will be executed
      * immediately if no other work is currently enqueued.
      *
      * The timer is a task scheduled with the executor that wakes up each {@link delay}, executes
@@ -77,12 +77,15 @@ public class TaskRateLimiter(
     }
 
     /**
-     * Run a task immediately.  The given CompletableFuture will be marked with an exceptional result if the task
+     * Run a task immediately. The given CompletableFuture will be marked with an exceptional result if the task
      * completes exceptionally or invoking the task throws an exception.
      *
      * @return The passed-in CompletableFuture
      */
-    private fun <T> runTask(task: () -> CompletableFuture<T>, completableFuture: CompletableFuture<T>): CompletableFuture<T> {
+    private fun <T> runTask(
+        task: () -> CompletableFuture<T>,
+        completableFuture: CompletableFuture<T>
+    ): CompletableFuture<T> {
         try {
             task().whenComplete { value, throwable ->
                 if (throwable != null) {
@@ -101,7 +104,7 @@ public class TaskRateLimiter(
     }
 
     /**
-     * Enqueue work to be run later in a wrapper task.  When the submitted work is executed,
+     * Enqueue work to be run later in a wrapper task. When the submitted work is executed,
      * the wrapper task will mark it as complete.
      */
     @GuardedBy("lock") // Only called by submit()

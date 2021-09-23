@@ -1,8 +1,38 @@
 # Overview
 
-[Apache Flink](https://flink.apache.org/) is a platform for stateful stream computation for the JVM,
-and [Kotlin](https://kotlinlang.org/) is a popular JVM language. This project tries to make using Flink with Kotlin more
-delightful with helpers that allow using idiomatic Kotlin patterns with Flink's Java API.
+`TaskRateLimiter` provides a way to limit the rate of task execution.
+
+Basic usage:
+
+```kotlin
+// TaskRateLimiter that allows executing 5 tasks per second
+val taskRateLimiter = TaskRateLimiter(5, Duration.ofSeconds(1))
+
+// Submit 10 tasks
+(0 until 10).map { taskNum ->
+    taskRateLimiter.submit {
+        CompletableFuture.supplyAsync { println("Working on $taskNum at ${Instant.now()}") }
+    }
+}
+```
+
+At ClassPass, we use `TaskRateLimiter` to control the throughput of our requests to partner APIs.
+
+```kotlin
+val rateLimiter = TaskRateLimiter(requestsPerSecond, Duration.ofSeconds(1))
+
+rateLimiter.submit {
+    asyncHttpClient
+        .prepareGet("example.com/endpoint/that/we/do/not/want/to/overload")
+        .execute()
+}
+```
+
+## See also
+
+- [`TaskThrottle`](https://bitbucket.org/marshallpierce/task-throttle) which works similarly but limits task concurrency rather than throughput.
+- Guava ['RateLimiter'](https://guava.dev/releases/30.1.1-jre/api/docs/com/google/common/util/concurrent/RateLimiter.html) provides a permit mechanism for implementing rate limiting
+- [Throttle](https://github.com/comodal/throttle) is Guava's `RateLimiter` extracted to a separate project with different features
 
 # Usage
 
