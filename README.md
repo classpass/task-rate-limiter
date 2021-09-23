@@ -31,7 +31,7 @@ rateLimiter.submit {
 ## See also
 
 - [`TaskThrottle`](https://bitbucket.org/marshallpierce/task-throttle) which works similarly but limits task concurrency rather than throughput.
-- Guava ['RateLimiter'](https://guava.dev/releases/30.1.1-jre/api/docs/com/google/common/util/concurrent/RateLimiter.html) provides a permit mechanism for implementing rate limiting
+- Guava [`RateLimiter`](https://guava.dev/releases/30.1.1-jre/api/docs/com/google/common/util/concurrent/RateLimiter.html) provides a permit mechanism for implementing rate limiting
 - [Throttle](https://github.com/comodal/throttle) is Guava's `RateLimiter` extracted to a separate project with different features
 
 # Usage
