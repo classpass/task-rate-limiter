@@ -95,7 +95,7 @@ configure<PublishingExtension> {
             pom {
                 name.set("${project.group}:${project.name}")
                 description.set(name)
-                url.set("https://github.com/classpass/flink-kotlin")
+                url.set("https://github.com/classpass/task-rate-limiter")
                 licenses {
                     license {
                         name.set("Apache License, Version 2.0")
@@ -104,15 +104,15 @@ configure<PublishingExtension> {
                 }
                 developers {
                     developer {
-                        id.set("marshallpierce")
-                        name.set("Marshall Pierce")
-                        email.set("575695+marshallpierce@users.noreply.github.com")
+                        id.set("dinomite")
+                        name.set("Drew Stephens")
+                        email.set("drew.stephens@classpass.com")
                     }
                 }
                 scm {
-                    connection.set("scm:git:https://github.com/classpass/flink-kotlin")
-                    developerConnection.set("scm:git:https://github.com/classpass/flink-kotlin.git")
-                    url.set("https://github.com/classpass/flink-kotlin")
+                    connection.set("scm:git:https://github.com/classpass/task-rate-limiter")
+                    developerConnection.set("scm:git:https://github.com/classpass/task-rate-limiter.git")
+                    url.set("https://github.com/classpass/task-rate-limiter")
                 }
             }
         }
