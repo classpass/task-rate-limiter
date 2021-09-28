@@ -27,8 +27,8 @@ dependencies {
     implementation("com.google.code.findbugs:jsr305:3.0.2")
 
     testImplementation(kotlin("test-junit5"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 
     testImplementation("org.slf4j:slf4j-simple:1.7.32")
 }
