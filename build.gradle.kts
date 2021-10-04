@@ -129,8 +129,9 @@ configure<PublishingExtension> {
 }
 
 // don't barf for devs without signing set up
-if (project.hasProperty("signing.keyId")) {
+if (project.hasProperty("signing.gnupg.keyName")) {
     configure<SigningExtension> {
+        useGpgCmd()
         sign(project.extensions.getByType<PublishingExtension>().publications["sonatype"])
     }
 }
